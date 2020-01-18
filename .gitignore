@@ -112,3 +112,5 @@ ENV/
 **/exercise*
 **/lectures
 **/projects
+**/*.pdf
+**/MNIST
