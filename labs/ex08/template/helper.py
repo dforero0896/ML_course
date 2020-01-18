@@ -3,7 +3,8 @@
 import os
 import shutil
 import numpy as np
-from matplotlib.pyplot import imread
+from scipy import misc
+
 
 def load_data():
     """Load data and convert it to the metrics system."""
@@ -30,17 +31,16 @@ def build_dir(dir):
 
 def load_image(path):
     """use the scipy.misc to load the image."""
-    return imread(path)
+    return misc.imread(path)
 
 
 def build_distance_matrix(data, mu):
     """build a distance matrix.
-
-    row of the matrix represents the data point,
-    column of the matrix represents the k-th cluster.
+    return
+        distance matrix:
+            row of the matrix represents the data point,
+            column of the matrix represents the k-th cluster.
     """
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO: build distance matrix
-    # ***************************************************
-    raise NotImplementedError
+    # Use tensor broadcasting to efficiently compute the square Euclidean distance
+    distance = np.sum((data[:,None,:] - mu)**2, axis = 2)
+    return distance #Workaround since plotting functions are meant to work with matrices not ndarrays.

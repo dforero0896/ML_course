@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from helpers import de_standardize, standardize
 
 
-def visualization(y, x, mean_x, std_x, w, save_name, is_LR=False):
+def visualization(y, x, mean_x, std_x, w, save_name):
     """visualize the raw data as well as the classification result."""
     fig = plt.figure()
     # plot raw data
@@ -32,13 +32,7 @@ def visualization(y, x, mean_x, std_x, w, save_name, is_LR=False):
     hx, hy = np.meshgrid(height, weight)
     hxy = (np.c_[hx.reshape(-1), hy.reshape(-1)] - mean_x) / std_x
     x_temp = np.c_[np.ones((hxy.shape[0], 1)), hxy]
-    # The threshold should be different for least squares and logistic regression when label is {0,1}.
-    # least square: decision boundary t >< 0.5
-    # logistic regression:  decision boundary sigmoid(t) >< 0.5  <==> t >< 0
-    if is_LR:
-        prediction = x_temp.dot(w) > 0.0
-    else:
-        prediction = x_temp.dot(w) > 0.5
+    prediction = x_temp.dot(w) > 0.5
     prediction = prediction.reshape((weight.shape[0], height.shape[0]))
     ax2.contourf(hx, hy, prediction, 1)
     ax2.scatter(

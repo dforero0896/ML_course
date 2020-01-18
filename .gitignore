@@ -106,3 +106,9 @@ ENV/
 *.fdb_latexmk
 *.synctex.gz
 *.tex
+# Ignore everythong but labs
+**/solution
+**/exam
+**/exercise*
+**/lectures
+**/projects
