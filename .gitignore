@@ -106,11 +106,11 @@ ENV/
 *.fdb_latexmk
 *.synctex.gz
 *.tex
-# Ignore everythong but labs
+# Ignore everything but labs
 **/solution
-**/exam
+exam
 **/exercise*
-**/lectures
-**/projects
+lectures
+projects
 **/*.pdf
 **/MNIST
