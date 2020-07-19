@@ -8,10 +8,10 @@ import numpy as np
 
 
 def least_squares(y, tx):
-    """calculate the least squares."""
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # least squares: TODO
-    # returns mse, and optimal weights
-    # ***************************************************
-    raise NotImplementedError
+    """calculate the least squares solution."""
+    gram_matrix = tx.transpose().dot(tx)
+    # Solve for w using a solver. Just multiplying by the inverse yields incorrect results in some cases
+    w = np.linalg.solve(gram_matrix, tx.transpose().dot(y))
+    e = y - tx.dot(w)
+    loss = e.dot(e) / (2 * len(e))
+    return w, loss
